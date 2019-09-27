@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0000"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".MainActivity">
+
+ <!-- <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="8dp"
+      android:id="@+id/recyler"/>
+-->
+
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="60dp"
+     android:hint="Amount"
+     android:textColorHint="#ffffff"
+     android:layout_margin="8dp"
+     android:backgroundTint="#ffffff"
+  android:id="@+id/amount"/>
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="60dp"
+     android:layout_margin="8dp"
+     android:hint="UPI_ID"
+     android:textColorHint="#ffffff"
+     android:backgroundTint="#ffffff"
+     android:id="@+id/upi_id"/>
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="60dp"
+     android:hint="Name"
+     android:textColorHint="#ffffff"
+     android:backgroundTint="#ffffff"
+     android:layout_margin="8dp"
+  android:id="@+id/name"/>
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="60dp"
+     android:hint="Note"
+     android:textColorHint="#ffffff"
+     android:backgroundTint="#ffffff"
+     android:layout_margin="8dp"
+  android:id="@+id/note"/>
+
+ <Button
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="16dp"
+     android:layout_gravity="center_vertical|center_horizontal"
+  android:id="@+id/send"
+  android:text="SEND BY UPI"
+  />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
