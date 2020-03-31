@@ -1,13 +1,9 @@
 package com.example.payment_app;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -16,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -103,31 +98,35 @@ initialize();
 
         switch (requestCode) {
             case UPI_PAYMENT:
-                if ((RESULT_OK == resultCode) || (resultCode == 11)) {
+                if (resultCode ==  RESULT_OK) {
                     if (data != null) {
-                        String trxt = data.getStringExtra("response");
-                        Log.d("UPI", "onActivityResult: " + trxt);
+                        String responseString = data.getStringExtra("response");
+                        Toast.makeText(this,responseString.toUpperCase(),Toast.LENGTH_LONG).show();
+                        Log.d("UPI", "onActivityResult: " + responseString);
                         ArrayList<String> dataList = new ArrayList<>();
-                        dataList.add(trxt);
+                        dataList.add(responseString);
                         upiPaymentDataOperation(dataList);
                     } else {
+                        Toast.makeText(this,"response is NULL",Toast.LENGTH_LONG).show();
                         Log.d("UPI", "onActivityResult: " + "Return data is null");
                         ArrayList<String> dataList = new ArrayList<>();
                         dataList.add("nothing");
                         upiPaymentDataOperation(dataList);
                     }
                 } else {
+                    Toast.makeText(this,"return data is null",Toast.LENGTH_LONG).show();
                     Log.d("UPI", "onActivityResult: " + "Return data is null"); //when user simply back without payment
                     ArrayList<String> dataList = new ArrayList<>();
                     dataList.add("nothing");
                     upiPaymentDataOperation(dataList);
                 }
                 break;
+            default: Toast.makeText(this,"OOPS !!",Toast.LENGTH_LONG).show();
         }
     }
 
     private void upiPaymentDataOperation(ArrayList<String> data) {
-        if (isConnectionAvailable(MainActivity.this)) {
+        if (isConnectionAvailable(getApplicationContext())) {
             String str = data.get(0);
             Log.d("UPIPAY", "upiPaymentDataOperation: "+str);
             String paymentCancel = "";
@@ -152,7 +151,7 @@ initialize();
 
             if (status.equals("success")) {
                 //Code to handle successful transaction here.
-                Toast.makeText(MainActivity.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Transaction successful."+approvalRefNo, Toast.LENGTH_SHORT).show();
                 Log.d("UPI", "responseStr: "+approvalRefNo);
             }
             else if("Payment cancelled by user.".equals(paymentCancel)) {
